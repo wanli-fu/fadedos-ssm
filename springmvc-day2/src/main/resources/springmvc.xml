@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--开启注解扫描-->
+    <context:component-scan base-package="com.fadedos.controller"/>
+
+<!--    &lt;!&ndash;配置处理器映射器 和 处理器器适配器&ndash;&gt;
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+
+    <!--配置处理器映射器 和 处理器器适配器  参数类型转换 跳转 响应处理-->
+    <mvc:annotation-driven/>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--注入前缀和后缀-->
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--配置静态资源拦截放行-->
+    <mvc:default-servlet-handler/>
+
+    <!--配置文件上传解析器   id必须是multipartResolver-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--注入文件上传下载大小限制 单位字节    2M=2097152  默认没有限制,此处限制20M-->
+        <property name="maxUploadSize" value="20971520"/>
+    </bean>
+
+    <!--注册拦截器-->
+    <bean id="myInterceptor" class="com.fadedos.interceptors.MyInterceptor"/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+
+            <!--拦截这个请求路径-->
+            <mvc:mapping path="/json/test"/>
+            <!--排除拦截那个请求-->
+            <mvc:exclude-mapping path="/json/showAll"/>
+
+            <!--使用那个拦截器-->
+            <ref bean="myInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--配置全局异常处理类-->
+    <bean id="globalExceptionResolver" class="com.fadedos.handlerexception.GlobalExceptionResolver"/>
+
+</beans>

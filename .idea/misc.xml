@@ -4,6 +4,9 @@
     <file type="web" url="file://$PROJECT_DIR$/spring5-demo/fadedos-spring5-annotation01-ssm" />
     <file type="web" url="file://$PROJECT_DIR$/spring5-demo/fadedos-spring5-annotation02" />
     <file type="web" url="file://$PROJECT_DIR$/spring5-demo/fadedos-spring5-web" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc-day1" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc-day2" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm_springmvc" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -11,6 +14,9 @@
         <option value="$PROJECT_DIR$/mybatis_day1/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis_day2/pom.xml" />
         <option value="$PROJECT_DIR$/spring5-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc-day1/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm_springmvc/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc-day2/pom.xml" />
       </list>
     </option>
   </component>

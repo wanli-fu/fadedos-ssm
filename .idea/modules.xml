@@ -12,6 +12,9 @@
       <module fileurl="file://$PROJECT_DIR$/mybatis_day1/mybatis_day1.iml" filepath="$PROJECT_DIR$/mybatis_day1/mybatis_day1.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis_day2/mybatis_day2.iml" filepath="$PROJECT_DIR$/mybatis_day2/mybatis_day2.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring5-demo/spring5-demo.iml" filepath="$PROJECT_DIR$/spring5-demo/spring5-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springmvc-day1/springmvc-day1.iml" filepath="$PROJECT_DIR$/springmvc-day1/springmvc-day1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springmvc-day2/springmvc-day2.iml" filepath="$PROJECT_DIR$/springmvc-day2/springmvc-day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_springmvc/ssm_springmvc.iml" filepath="$PROJECT_DIR$/ssm_springmvc/ssm_springmvc.iml" />
     </modules>
   </component>
 </project>
