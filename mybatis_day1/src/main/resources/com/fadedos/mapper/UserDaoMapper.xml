@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+       namespace属性:命名空间 用来书写当前mapper配置文件 是对那个Dao接口的实现
+       全限定名: 包 类..
+
+-->
+<mapper namespace="com.fadedos.dao.UserDao">
+
+    <!--
+        保存
+        insert: 插入操作
+        id:方法名
+        parameterType: 参数类型 包 类
+        注意: 1.insert 标签内部写sql语句
+             2. #{对象中属性名}
+        useGeneratedKeys="true"  使用数据库自动生成id策略
+        keyProperty="" 主键属性: 当使用数据库自动生成策略时,将自动生成的主键值赋值给参数对象的那个属性
+    -->
+    <insert id="save" parameterType="com.fadedos.entity.User" keyProperty="id" useGeneratedKeys="true">
+        insert into t_user
+        values (#{id}, #{name}, #{age}, #{bir})
+    </insert>
+
+    <!--更新-->
+    <update id="update" parameterType="com.fadedos.entity.User">
+        update t_user
+        <set>     <!--set标签动态去掉前后 赋值语句前后多余的,-->
+            <!--test 属性 是对象的属性名-->
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+
+            <if test="age!=null and age!=''">
+                age = #{age},
+            </if>
+
+            <if test="bir!=null and bir!=''">
+                bir = #{bir}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--删除操作-->
+    <delete id="delete" parameterType="integer">
+        delete
+        from t_user
+        where id = #{id}
+    </delete>
+
+    <!--查询所有-->
+    <!--sql 标签:实现sql语句复用  -->
+    <sql id="UserQuery">
+        select id, name as uname, age, bir
+        from t_user
+    </sql>
+    <!--结果映射 id:resultMap标签的唯一标识  tyep:指定封装对象的类型-->
+    <resultMap id="userQuery" type="com.fadedos.entity.User">
+        <!--主键封装 -->
+        <id column="id" property="id"/>
+        <!--普通列封装-->
+        <result column="uname" property="name"/>
+        <result column="age" property="age"/>
+        <result column="bir" property="bir"/>
+    </resultMap>
+
+    <select id="queryAll" resultMap="userQuery">
+
+        <include refid="UserQuery"/>
+
+    </select>
+
+    <!--基于id查询-->
+    <select id="queryById" parameterType="integer" resultType="com.fadedos.entity.User">
+
+        <include refid="UserQuery"/>
+
+        where id = #{id};
+    </select>
+
+    <!--基于名字  模糊查询-->
+    <select id="queryLikeByName" parameterType="string" resultType="com.fadedos.entity.User">
+        <include refid="UserQuery"/>
+        where name like concat ('%',#{name},'%');  <!--mysql 连接查询 concat函数  concat ('%',#{name},'%') -->
+    </select>
+
+    <!--分页查询-->
+    <select id="queryByPage" resultType="com.fadedos.entity.User">
+        <include refid="UserQuery"/>
+        limit #{start},#{rows};
+    </select>
+
+    <!--查询总条数-->
+    <select id="queryTotalCounts" resultType="Long">
+        select count(id)
+        from t_user;
+    </select>
+</mapper>
