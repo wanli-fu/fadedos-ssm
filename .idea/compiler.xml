@@ -7,13 +7,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mybatis_day1" />
+        <module name="fadedos-spring5-03" />
+        <module name="fadedos-spring5-02" />
+        <module name="fadedos-spring5-01" />
         <module name="mybatis_day2" />
+        <module name="mybatis_day1" />
+        <module name="fadedos-spring5-annotation01-ssm" />
+        <module name="fadedos-spring5-annotation01" />
+        <module name="fadedos-spring5-annotation02" />
+        <module name="fadedos-spring5-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="fadedos-spring5-01" target="1.8" />
+      <module name="fadedos-spring5-02" target="1.8" />
+      <module name="fadedos-spring5-03" target="1.8" />
+      <module name="fadedos-spring5-annotation01" target="1.8" />
+      <module name="fadedos-spring5-annotation01-ssm" target="1.8" />
+      <module name="fadedos-spring5-annotation02" target="1.8" />
+      <module name="fadedos-spring5-web" target="1.8" />
       <module name="mybatis_day1" target="1.8" />
       <module name="mybatis_day2" target="1.8" />
+      <module name="spring5-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

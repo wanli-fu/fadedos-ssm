@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spring5-demo/fadedos-spring5-annotation01-ssm" />
+    <file type="web" url="file://$PROJECT_DIR$/spring5-demo/fadedos-spring5-annotation02" />
+    <file type="web" url="file://$PROJECT_DIR$/spring5-demo/fadedos-spring5-web" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/mybatis_day1/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis_day2/pom.xml" />
+        <option value="$PROJECT_DIR$/spring5-demo/pom.xml" />
       </list>
     </option>
   </component>

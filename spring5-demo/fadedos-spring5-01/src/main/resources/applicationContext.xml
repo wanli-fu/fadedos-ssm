@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- id属性 名字唯一
+         class属性 配置全限定名
+      -->
+    <!--<bean id="person" class="com.fadedos.basic.Person"/>
+    <bean id="person1" class="com.fadedos.basic.Person"/>-->
+
+    <!--name属性 是别名-->
+    <!--    <bean id="person" class="com.fadedos.basic.Person">
+            &lt;!&ndash;<property name="id">
+                <value>10</value>
+            </property>&ndash;&gt;
+
+            <property name="id" value="10"/>
+
+            &lt;!&ndash;<property name="name">
+                <value>xiaojr</value>
+            </property>&ndash;&gt;
+
+            <property name="name" value="xiaohei"/>
+
+            <property name="emails">
+                <list>
+                    <value>fadedos@126.com</value>
+                    <value>fadedos@163.com</value>
+                </list>
+            </property>
+            <property name="tels">
+                <set>
+                    <value>138999931312</value>
+                    <value>455353132131</value>
+                    <value>455353132131</value>
+                    &lt;!&ndash;重复的会过滤掉 set集合&ndash;&gt;
+                    <value>455353132131</value>
+                </set>
+            </property>
+            <property name="addresses">
+                <list>
+                    <value>xierqi</value>
+                    <value>alibaba</value>
+                    <value>alibaba</value>
+                    <value>alibaba</value>
+                </list>
+            </property>
+
+            <property name="qqs">
+                <map>
+                    <entry>
+                        <key>
+                            <value>fadedos</value>
+                        </key>
+                        <value>47545465464</value>
+                    </entry>
+                    <entry>
+                        <key>
+                            <value>wanli</value>
+                        </key>
+                        <value>6865656</value>
+                    </entry>
+                </map>
+            </property>
+
+            <property name="p">
+                <props>
+                    <prop key="key1">value1</prop>
+                    <prop key="key2">value2</prop>
+                </props>
+            </property>
+        </bean>-->
+
+    <!--<bean id="userService" class="com.fadedos.basic.UserServiceImpl">
+        <property name="userDao">
+
+            <bean class="com.fadedos.basic.UserDaoImpl"/>
+        </property>
+    </bean>-->
+
+    <bean id="userDao" class="com.fadedos.basic.UserDaoImpl"/>
+
+    <!--<bean id="userService" class="com.fadedos.basic.UserServiceImpl">
+        <property name="userDao">
+            <ref bean="userDao"/>
+        </property>
+    </bean>-->
+
+    <!--<bean id="userService" class="com.fadedos.basic.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>-->
+
+    <bean id="person" class="com.fadedos.basic.Person" p:name="xiaojr" p:id="100"/>
+
+    <bean id="userService" class="com.fadedos.basic.UserServiceImpl" p:userDao-ref="userDao"/>
+
+    <bean id="customer" class="com.fadedos.basic.constructor.Customer">
+        <constructor-arg type="int">
+            <value>37</value>
+        </constructor-arg>
+
+        <!--<constructor-arg>
+            <value>1223</value>
+        </constructor-arg>-->
+    </bean>
+
+    <!--实现 FactoryBean接口-->
+    <!--<bean id="conn" class="com.fadedos.factorybean.ConnectionFactoryBean">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/fadedos?useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
+    </bean>-->
+
+    <!--实例工厂类-->
+    <!--  <bean id="connFactory" class="com.fadedos.factorybean.ConnectionFactory"/>
+
+      &lt;!&ndash;整合实例工厂  先new实例工厂 connFactory 然后在调用工厂的实例中的getConnection方法&ndash;&gt;
+      <bean id="conn" factory-bean="connFactory" factory-method="getConnection"/>-->
+
+    <!--静态工厂 省略了一个创建工厂的一步,直接调用静态方法-->
+    <bean id="conn" class="com.fadedos.factorybean.StaticConnectionFactory" factory-method="getConnection"/>
+
+    <!--控制简单对象次数  scope属性-->
+    <bean id="account" scope="singleton" class="com.fadedos.scope.Account"/>
+
+    <!--测试bean的生命周期-->
+    <!--<bean id="product" class="com.fadedos.life.Product"/>-->
+
+    <!--对象的创建的初始化过程-->
+    <bean id="product" scope="prototype" class="com.fadedos.life.Product" init-method="myInit" destroy-method="myDestroy">
+        <property name="name" value="fadedos"/>
+    </bean>
+</beans>

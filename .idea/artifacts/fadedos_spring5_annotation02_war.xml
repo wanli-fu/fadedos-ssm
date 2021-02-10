@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fadedos-spring5-annotation02:war">
+    <output-path>$PROJECT_DIR$/spring5-demo/fadedos-spring5-annotation02/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>fadedos-spring5-annotation02</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="fadedos-spring5-annotation02-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="fadedos-spring5-annotation02:war exploded" />
+    </root>
+  </artifact>
+</component>
