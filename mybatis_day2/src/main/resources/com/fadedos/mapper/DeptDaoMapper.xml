@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fadedos.dao.DeptDao">
+
+    <resultMap id="deptmap" type="com.fadedos.entity.Dept">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--封装员工信息 collection 用来处理一对多关系标签
+            property: 封装关系属性名
+            javaType: 关系属性类型
+            offType: 用来书写关系属性中的泛型数据
+        -->
+        <collection property="emps" javaType="list" ofType="com.fadedos.entity.Emp">
+            <id column="eid" property="id"/>
+            <result column="ename" property="name"/>
+            <result column="age" property="age"/>
+            <result column="bir" property="bir"/>
+        </collection>
+    </resultMap>
+
+    <!--查询所有部门-->
+    <select id="queryAll" resultMap="deptmap">
+        select d.id,
+               d.name,
+               e.id     eid,
+               e.`name` ename,
+               e.age,
+               e.bir
+        from t_dept d
+                 left join t_emp e on d.id = e.deptid
+    </select>
+</mapper>

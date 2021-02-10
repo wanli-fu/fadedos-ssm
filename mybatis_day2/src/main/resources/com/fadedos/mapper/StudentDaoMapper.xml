@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fadedos.dao.StudentDao">
+
+
+    <resultMap id="studentmap" type="com.fadedos.entity.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <!--关系属性 多对多-->
+        <collection property="courses" javaType="list" ofType="com.fadedos.entity.Course">
+            <id column="cid" property="id"/>
+            <result column="cname" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryById" resultMap="studentmap">
+        SELECT s.id,
+               s.NAME,
+               c.id   cid,
+               c.NAME cname
+        FROM t_student s
+                 LEFT JOIN t_student_course tc ON s.id = tc.sid
+                 LEFT JOIN t_course c ON tc.cid = c.id
+        WHERE s.id = #{id};
+    </select>
+</mapper>
